@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostPost;
 
 class PostController extends Controller
 {
@@ -23,8 +25,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {    $data = ['rene','meme','lucho qlo feo'];
-        return view('dashboard.post.create',['data'=>$data]);
+    {   
+        return view('dashboard.post.create');
     }
 
     /**
@@ -33,13 +35,18 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   $data = ['rene','meme','lucho qlo feo'];
-        //dd($request->title);
-        return redirect()->route('post.create',['data'=>$data])->with('exito','post enviado correctamente.');
+    public function store(StorePostPost $request)
+    {   
+
+        
+        $request->validate([
+            'title' => 'required|min:5|max:500',
+            'content' => 'required'
+        ]);
+        Post::create($request->validated()); 
+        return back()->with('exito','post enviado correctamente.');
         
         
-        //return back()->with('mensaje','correcto!');
     }
 
     /**
