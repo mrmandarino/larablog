@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Dashboard\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Mandarino\MController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//          WEAS EXPERIMENTALES - NO SON CANON DEL CURSO
+Route::get('/mandarino', [MController::class, 'index'])->name('mandarino');
+
+//          WEAS DEL CURSO
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mandarino', function () {
-    return view('mandarino.test');
-});
+
+Route::resource('dashboard/post', PostController::class);
+
+
