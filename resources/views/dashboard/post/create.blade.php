@@ -26,6 +26,40 @@
                     <textarea class="form-control" placeholder="Deje aquí sus comentarios" name="content" id="content"></textarea>
                 </div><br>
 
+                
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                        $("#TypeOfConstruction").on('change',function(){
+                            var selectedBalue = $("#TypeOfConstruction").val();
+                            if (selectedBalue == "Timber Frame") 
+                            {
+                                $(".wfiedls").slideDown(500);
+                            }
+                            else{
+                                $(".wfiedls").slideUp(500);
+                            }
+                        }); 
+                       
+                    });
+                </script> 
+
+                <fieldset class="form-group">
+                    <label for="exampleSelect1">Type of Construction</label>
+                    <select class="form-control" id="TypeOfConstruction">
+                      <option>Traditional Masonry</option>
+                      <option>Timber Frame</option>
+                      </select>
+                </fieldset>
+
+                <fieldset class="form-group wfiedls">
+                    <label for="PartyWalls">Which walls are party walls?</label>
+                       <br><input type="checkbox"> W1
+                       <br><input type="checkbox"> W2
+                       <br><input type="checkbox"> W3
+                       <br><input type="checkbox"> W4
+                </fieldset>
+                
+
                 <button type="submit" class="btn btn-primary">Enviar</button>
 
 
